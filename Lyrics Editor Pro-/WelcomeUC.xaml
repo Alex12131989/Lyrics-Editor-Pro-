@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Lyrics_Editor_Pro_.WelcomeUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lyrics_Editor_Pro_"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel VerticalAlignment="Center" >
+        <Label x:Name="welcomeLabel" Background="Transparent" Foreground="LightGray" Content="Welcome" HorizontalContentAlignment="Center" 
+           FontSize="30" FontStyle="Italic" FontWeight="Bold" Margin="0,0,0,100"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnSelectFile" MinHeight="130" MinWidth="130" Click="btnSelectFiles_Click" Margin="22" Background="#161616">
+                <StackPanel >
+                    <Label Foreground="LightGray">Select Files</Label>
+                    <!--<Image Width="80" Source="></Image>-->
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
