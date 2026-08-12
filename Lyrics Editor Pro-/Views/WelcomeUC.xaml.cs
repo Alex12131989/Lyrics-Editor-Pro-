@@ -1,9 +1,8 @@
 ﻿using Microsoft.Win32;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Lyrics_Editor_Pro_
+namespace LyricsEditorPro.Views
 {
     /// <summary>
     /// Interaction logic for WelcomeUC.xaml
@@ -14,6 +13,7 @@ namespace Lyrics_Editor_Pro_
         {
             InitializeComponent();
         }
+        
         private void btnSelectFiles_Click(object sender, RoutedEventArgs e)
         {
             var ofd = new OpenFileDialog();
@@ -26,6 +26,7 @@ namespace Lyrics_Editor_Pro_
                 var container = this.Parent as Grid;
                 container.Children.Add(new HomeUC(ofd.FileNames));
                 container.Children.Remove(this);
+                (container.Parent as Window).Width -= -1; //to set the Window_SizeChanged method in case (most certaintly actually) windows is smaller than homeUC
             }
         }
     }
