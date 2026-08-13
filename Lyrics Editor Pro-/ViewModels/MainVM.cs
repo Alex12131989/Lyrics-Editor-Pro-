@@ -1,12 +1,20 @@
-﻿namespace LyricsEditorPro.ViewModels
+﻿using LyricsEditorPro.Stores;
+
+namespace LyricsEditorPro.ViewModels
 {
     internal class MainVM : BaseVM
     {
-		public BaseVM CurrentVM { get; }
-        public MainVM()
+        readonly NavigationStore _navigationStore;
+        public BaseVM CurrentVM => _navigationStore.CurrentVM;
+        public MainVM(NavigationStore navigationStore)
         {
-            CurrentVM = new HomeVM();
+            _navigationStore = navigationStore;
+            _navigationStore.CurrentVMChanged += OnCurrentVMChanged;
         }
-	}
+        void OnCurrentVMChanged()
+        {
+            OnPropertyChanged(nameof(CurrentVM));
+        }
+    }
 }
  

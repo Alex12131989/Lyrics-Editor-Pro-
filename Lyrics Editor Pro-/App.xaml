@@ -10,6 +10,9 @@
                 <ResourceDictionary Source="/Styles/ListView.xaml"/>
                 <ResourceDictionary Source="/Styles/Menu.xaml"/>
                 <ResourceDictionary Source="/Styles/TextBox.xaml"/>
+                <ResourceDictionary Source="/Styles/Slider.xaml"/>
+                <ResourceDictionary Source="/Styles/ProgressBar.xaml"/>
+                <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

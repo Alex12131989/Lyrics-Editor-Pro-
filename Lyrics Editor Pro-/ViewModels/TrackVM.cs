@@ -10,8 +10,8 @@ namespace LyricsEditorPro.ViewModels
         public string Album => _track.tags.Album;
         public string[] Artists => _track.tags.Performers;
         string[] AlbumArtists => _track.tags.AlbumArtists;
-        public TagLib.IPicture[] Cover => _track.tags.Pictures;
-        public string Length => _track.tags.Length;
+        public TagLib.IPicture[] Cover => _track.tags.Pictures; 
+        public TimeSpan Duration => _track.Duration;
         public TrackVM(Track track)
         {
             _track = track;

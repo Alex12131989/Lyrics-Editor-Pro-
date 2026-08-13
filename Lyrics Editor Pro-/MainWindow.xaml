@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LyricsEditorPro" 
         xmlns:views="clr-namespace:LyricsEditorPro.Views"
+        xmlns:vms="clr-namespace:LyricsEditorPro.ViewModels"
         mc:Ignorable="d"
         SizeChanged="Window_SizeChanged"
         WindowStyle="None" Background="#FF101010" Foreground="#FFDEDEDE"
@@ -15,6 +16,14 @@
     </WindowChrome.WindowChrome>
 
     <Grid x:Name="Container">
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:WelcomeVM}">
+                <views:WelcomeUC/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:HomeVM}">
+                <views:HomeUC/>
+            </DataTemplate>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
@@ -24,7 +33,7 @@
             <Button Content="🗗" Style="{StaticResource WindowControl}" Click="btnMaximize_Click"/>
             <Button Content="✕" Style="{StaticResource WindowControl}" Click="btnClose_Click"/>
         </StackPanel>
-        
-    <views:HomeUC Grid.Row="1" DataContext="{Binding CurrentVM}"/>
+
+        <ContentControl Content="{Binding CurrentVM}" Grid.Row="1"/>
     </Grid>
 </Window>

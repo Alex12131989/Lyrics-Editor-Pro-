@@ -13,6 +13,7 @@ namespace LyricsEditorPro
             InitializeComponent();
         }
 
+        //modify it later
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (Container.Children.Count <= 1) return;

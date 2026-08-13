@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LyricsEditorPro.Views"
+             xmlns:local="clr-namespace:LyricsEditorPro.Views" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -11,7 +11,7 @@
         <Label x:Name="welcomeLabel" Content="Welcome" HorizontalContentAlignment="Center" 
        FontSize="30" FontStyle="Italic" FontWeight="Bold" Margin="0,0,0,100"/>
         <StackPanel Orientation = "Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="btnSelectFile" MinHeight="130" MinWidth="130" Command="{Binding SelectFilesCommand}" Margin="22">
+            <Button MinHeight="130" MinWidth="130" Command="{Binding SelectFilesCommand}" Margin="22">
                 <StackPanel >
                     <Label>Select Files</Label>
                     <!--<Image Width = "80" Source= "></Image>-->
