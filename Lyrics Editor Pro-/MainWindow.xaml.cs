@@ -10,6 +10,7 @@ namespace LyricsEditorPro
     {
         public MainWindow()
         {
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight-8;
             InitializeComponent();
         }
 
@@ -18,8 +19,8 @@ namespace LyricsEditorPro
         {
             if (Container.Children.Count <= 1) return;
             Container.Children[1].Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
-            this.MinHeight = Container.Children[0].DesiredSize.Height + Container.Children[1].DesiredSize.Height;
-            this.MinWidth = Container.Children[0].DesiredSize.Width > Container.Children[1].DesiredSize.Width ? Container.Children[0].DesiredSize.Width : Container.Children[1].DesiredSize.Width;
+            MinHeight = Container.Children[0].DesiredSize.Height + Container.Children[1].DesiredSize.Height;
+            MinWidth = Container.Children[0].DesiredSize.Width > Container.Children[1].DesiredSize.Width ? Container.Children[0].DesiredSize.Width : Container.Children[1].DesiredSize.Width;
         }
 
         private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -36,12 +37,14 @@ namespace LyricsEditorPro
             if (WindowState == WindowState.Maximized)
             {
                 WindowState = WindowState.Normal;
-                (sender as Button)?.Content = "🗗";
+                TextBlock? textBlock = ((sender as Button)?.Content as TextBlock);
+                textBlock?.Text = "🗗\"";
             }
             else
             {
                 WindowState = WindowState.Maximized;
-                (sender as Button)?.Content = "🗖";
+                TextBlock? textBlock = ((sender as Button)?.Content as TextBlock);
+                textBlock?.Text = "🗖";
             }
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)

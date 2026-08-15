@@ -1,26 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using LyricsEditorPro.Model;
+using LyricsEditorPro.ViewModels;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LyricsEditorPro.Views
 {
-    /// <summary>
-    /// Interaction logic for PlayerUC.xaml
-    /// </summary>
     public partial class PlayerUC : UserControl
     {
+        public static readonly DependencyProperty PlayerContentDP = DependencyProperty.Register( 
+            nameof(PlayerContent), 
+            typeof(Track), 
+            typeof(PlayerUC), 
+            new PropertyMetadata(null, OnPlayerContentChanged));
+
+        public Track PlayerContent 
+        { 
+            get => (Track)GetValue(PlayerContentDP);
+            set { SetValue(PlayerContentDP, value); }
+        }
         public PlayerUC()
         {
             InitializeComponent();
         }
+        private static void OnPlayerContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (PlayerUC)d;
+            (control.DataContext as PlayerVM)?.SetCurrentTrack((Track)e.NewValue);
+        }
+       
     }
 }

@@ -5,68 +5,67 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LyricsEditorPro.Views"
              mc:Ignorable="d" >
-
-    <DockPanel Width="1500">
-        <Button Width="50" Height="50" BorderThickness="0" Padding="0" Margin="10,0" Command="{Binding PreviousInQueue}">
+    <DockPanel>
+        <Button Width="20" Height="20" BorderThickness="0" Padding="0" Margin="10,0" Command="{Binding PreviousInQueue}" Style="{StaticResource WindowControl}">
             <Button.Content>
-                <Canvas Width="50" Height="50">
-                    <Rectangle Width="10" Height="50" 
+                <Canvas Width="20" Height="20">
+                    <Rectangle Width="4" Height="20" 
                      Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                    <Polygon Points="10,25 30,0 30,50" SnapsToDevicePixels="True"
+                    <Polygon Points="4,10 12,0 12,20" SnapsToDevicePixels="True"
                      Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                    <Polygon Points="30,25 50,0 50,50" SnapsToDevicePixels="True"
+                    <Polygon Points="12,10 20,0 20,20" SnapsToDevicePixels="True"
                      Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
                 </Canvas>
             </Button.Content>
         </Button>
 
-        <Button Width="50" Height="50" BorderThickness="0" Padding="0" Margin="10,0" Command="{Binding TogglePlay}">
+        <Button Width="20" Height="20" BorderThickness="0" Padding="0" Margin="10,0" Command="{Binding TogglePlay}" Style="{StaticResource WindowControl}">
             <Button.Content>
-                <Canvas Width="50" Height="50">
-                    <Rectangle Width="15" Height="50" Canvas.Left="5"
+                <Canvas Width="20" Height="20">
+                    <Rectangle Width="6" Height="20" Canvas.Left="2"
                      Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                    <Rectangle Width="15" Height="50" Canvas.Right="5"
+                    <Rectangle Width="6" Height="20" Canvas.Right="2"
                      Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
                 </Canvas>
             </Button.Content>
         </Button>
 
-        <Button Width="50" Height="50" BorderThickness="0" Padding="0" Margin="10,0" Command="{Binding NextInQueue}">
+        <Button Width="20" Height="20" BorderThickness="0" Padding="0" Margin="10,0" Command="{Binding NextInQueue}" Style="{StaticResource WindowControl}">
             <Button.Content>
-                <Canvas Width="50" Height="50">
-                    <Polygon Points="40,25 20,0 20,50" SnapsToDevicePixels="True"
+                <Canvas Width="20" Height="20">
+                    <Polygon Points="16,10 8,0 8,20" SnapsToDevicePixels="True"
                      Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                    <Polygon Points="20,25 0,0 0,50" SnapsToDevicePixels="True"
+                    <Polygon Points="8,10 0,0 0,20" SnapsToDevicePixels="True"
                      Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                    <Rectangle Width="10" Height="50" Canvas.Right="0"
+                    <Rectangle Width="4" Height="20" Canvas.Right="0"
                      Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
                 </Canvas>
             </Button.Content>
         </Button>
 
-        <Button Width="50" Height="50" BorderThickness="0" Padding="0" Margin="10,0" Command="{Binding VolumeToggle}">
+        <Button Width="20" Height="20" BorderThickness="0" Padding="0" Margin="10,0" Command="{Binding ToggleVolume}">
             <Button.Content>
-                <Canvas Width="50" Height="50">
-                    <Polygon Points="0,20 0,30 35,50 35,0" SnapsToDevicePixels="True"
+                <Canvas Width="20" Height="20">
+                    <Polygon Points="0,8 0,12 14,20 14,0" SnapsToDevicePixels="True"
                      Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
-                    <Rectangle Width="10" Height="40" Canvas.Right="0"
-                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" HorizontalAlignment="Center" Canvas.Left="40" Canvas.Top="5"/>
+                    <Rectangle Width="3" Height="12"
+                     Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}" HorizontalAlignment="Center" Canvas.Right="1" Canvas.Top="4"/>
                 </Canvas>
             </Button.Content>
         </Button>
 
-        <Slider VerticalAlignment="Center" Width="250" Height="20" Margin="0,0,10,0" Value="{Binding Volume, Mode=TwoWay}"
+        <Slider Width="150" Height="10" Margin="0,0,10,0" Value="{Binding Volume, Mode=TwoWay}"
                 VerticalContentAlignment="Center"/>
         <StackPanel VerticalAlignment="Bottom">
             <DockPanel>
-                <TextBlock Margin="5,0,5,5" Text="{Binding Artist}"/>
-                <TextBlock Margin="5,0,5,5" Text="{Binding TrackName}"/>
-                <TextBlock Margin="5,0,5,5" Text="{Binding Album}"/>
-                <TextBlock Margin="5,0,5,5" HorizontalAlignment="Right" Text="{Binding ProgressTime}"/>
+                <TextBlock Margin="5,0,5,2" Text="{Binding Artist}" FontSize="15"/>
+                <TextBlock Margin="5,0,5,2" Text="{Binding TrackName}" FontSize="15"/>
+                <TextBlock Margin="5,0,5,2" Text="{Binding Album}" FontSize="15"/>
+                <TextBlock Margin="5,0,5,2" HorizontalAlignment="Right" Text="{Binding ProgressTime}" FontSize="15"/>
             </DockPanel>
-            <ProgressBar Height="15" Value="{Binding TrackProgress, Mode=TwoWay}"/>
+            <ProgressBar Height="10" Value="{Binding TrackProgress, Mode=TwoWay}"/>
         </StackPanel>
-        
-        
+
+
     </DockPanel>
 </UserControl>

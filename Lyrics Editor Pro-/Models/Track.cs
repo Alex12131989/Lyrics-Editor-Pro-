@@ -1,6 +1,6 @@
 ﻿namespace LyricsEditorPro.Model
 {
-    internal class Track
+    public class Track
     {
         string filepath = string.Empty;
         TagLib.File file;

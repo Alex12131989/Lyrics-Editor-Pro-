@@ -2,7 +2,7 @@
 
 namespace LyricsEditorPro.ViewModels
 {
-    internal class BaseCommand : ICommand
+    public class BaseCommand : ICommand
     {
         Action<object> execute;
         Func<object, bool>? canExecute;
