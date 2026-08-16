@@ -14,15 +14,6 @@ namespace LyricsEditorPro
             InitializeComponent();
         }
 
-        //modify it later
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (Container.Children.Count <= 1) return;
-            Container.Children[1].Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
-            MinHeight = Container.Children[0].DesiredSize.Height + Container.Children[1].DesiredSize.Height;
-            MinWidth = Container.Children[0].DesiredSize.Width > Container.Children[1].DesiredSize.Width ? Container.Children[0].DesiredSize.Width : Container.Children[1].DesiredSize.Width;
-        }
-
         private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             DragMove();

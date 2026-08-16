@@ -54,16 +54,17 @@
             </Button.Content>
         </Button>
 
-        <Slider Width="150" Height="10" Margin="0,0,10,0" Value="{Binding Volume, Mode=TwoWay}"
-                VerticalContentAlignment="Center"/>
-        <StackPanel VerticalAlignment="Bottom">
+        <Slider Width="150" Height="10" Margin="0,0,10,0" Value="{Binding Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center"
+                Maximum="{Binding MaxProgressSliderValue}" Minimum="{Binding MinProgressSliderValue}" IsMoveToPointEnabled="True"/>
+        <StackPanel VerticalAlignment="Center">
             <DockPanel>
                 <TextBlock Margin="5,0,5,2" Text="{Binding Artist}" FontSize="15"/>
                 <TextBlock Margin="5,0,5,2" Text="{Binding TrackName}" FontSize="15"/>
                 <TextBlock Margin="5,0,5,2" Text="{Binding Album}" FontSize="15"/>
                 <TextBlock Margin="5,0,5,2" HorizontalAlignment="Right" Text="{Binding ProgressTime}" FontSize="15"/>
             </DockPanel>
-            <ProgressBar Height="10" Value="{Binding TrackProgress, Mode=TwoWay}"/>
+            <Slider x:Name="pbTrackProgress" Value="{Binding TrackProgress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TrackProgressSlider}" 
+                    Maximum="{Binding MaxProgressSliderValue}" Minimum="{Binding MinProgressSliderValue}" IsMoveToPointEnabled="True"/>
         </StackPanel>
 
 

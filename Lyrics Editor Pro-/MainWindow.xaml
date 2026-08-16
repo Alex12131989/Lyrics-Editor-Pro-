@@ -7,11 +7,12 @@
         xmlns:views="clr-namespace:LyricsEditorPro.Views"
         xmlns:vms="clr-namespace:LyricsEditorPro.ViewModels"
         mc:Ignorable="d"
-        SizeChanged="Window_SizeChanged"
         WindowStyle="None" 
         Background="#FF101010" 
         Foreground="#FFDEDEDE"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MinHeight="600"
+        MinWidth="1000">
     
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0"/>

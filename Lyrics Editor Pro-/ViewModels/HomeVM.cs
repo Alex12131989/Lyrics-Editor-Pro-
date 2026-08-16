@@ -1,15 +1,20 @@
 ﻿using LyricsEditorPro.Model;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.Drawing;
 
 namespace LyricsEditorPro.ViewModels
 {
     public class HomeVM : BaseVM
     {
         private int currentTrackIndex = 0;
-        private List<string> filepaths = new List<string> { "C:\\Lossless music\\Avenged Sevenfold\\City of Evil\\Blinded in Chains.flac" };
-        public ObservableCollection<Track> Tracks { get; } = new ObservableCollection<Track>() { new Track("C:\\Lossless music\\Avenged Sevenfold\\City of Evil\\Blinded in Chains.flac") };//little shit cost me 3 hours of sleep - it was null the whole time and I thought I passed properties incorrectly
-        public Track CurrentTrack => Tracks[currentTrackIndex];
+        private int lyricsFontSize = 16;
+        private List<string> filepaths = new List<string>();
+
+        private static TrackVM cityOfEvil = new TrackVM(new Track("C:\\Lossless music\\Avenged Sevenfold\\City of Evil\\Blinded in Chains.flac"));
+
+        public ObservableCollection<TrackVM> Tracks { get; } = new ObservableCollection<TrackVM>() { cityOfEvil };
+        public Track CurrentTrack => Tracks[currentTrackIndex].Source;
 		public PlayerVM PlayerVM { get; } = new PlayerVM();
 
 		public string LyricsText 
@@ -21,7 +26,7 @@ namespace LyricsEditorPro.ViewModels
                 OnPropertyChanged(nameof(LyricsText));
             }
         }
-
+        public int LyricsFontSize { get => lyricsFontSize; set => lyricsFontSize = value; }
 
         public BaseCommand SelectFilesCommand => new BaseCommand(execute => SelectFiles());
 
@@ -39,7 +44,7 @@ namespace LyricsEditorPro.ViewModels
         void ImportTracks(string[] filepaths)
         {
             foreach (string filepath in filepaths)
-                Tracks?.Add(new Track(filepath));
+                Tracks?.Add(new TrackVM(new Track(filepath)));
         }
     }
 }
