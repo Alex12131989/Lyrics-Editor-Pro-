@@ -7,13 +7,28 @@ namespace LyricsEditorPro.ViewModels
 {
     public class HomeVM : BaseVM
     {
+        readonly Navigation lyricsNavigation;
+        public BaseVM CurrentVM => lyricsNavigation.CurrentVM;
+        public SimpleLyricsVM simpleLyricsViewModel = new SimpleLyricsVM();
+        public SyncedLyricsVM syncedLyricsViewModel = new SyncedLyricsVM();
+        public HomeVM()
+        {
+            lyricsNavigation = new Navigation(); 
+            lyricsNavigation.CurrentVM = syncedLyricsViewModel;//make some log file later (that means in the very end)
+            lyricsNavigation.CurrentVMChanged += OnCurrentVMChanged;
+
+            syncedLyricsViewModel.SetLyrics(Tracks[currentTrackIndex].Lyrics);
+        }
         private int currentTrackIndex = 0;
         private int lyricsFontSize = 16;
         private List<string> filepaths = new List<string>();
 
         private static TrackVM cityOfEvil = new TrackVM(new Track("C:\\Lossless music\\Avenged Sevenfold\\City of Evil\\Blinded in Chains.flac"));
-
-        public ObservableCollection<TrackVM> Tracks { get; } = new ObservableCollection<TrackVM>() { cityOfEvil };
+        private static TrackVM spitItOut = new TrackVM(new Track("C:\\Lossless music\\Slipknot\\Slipknot\\Spit It Out.flac"));
+        private static TrackVM eyeless = new TrackVM(new Track("C:\\Lossless music\\Slipknot\\Slipknot\\Eyeless.flac"));
+        private static TrackVM lwymmd = new TrackVM(new Track("C:\\Lossless music\\Taylor Swift\\reputation\\Look What You Made Me Do.flac"));
+        private static TrackVM theEmptinessMachine = new TrackVM(new Track("C:\\Lossless music\\Linkin Park\\From Zero\\The Emptiness Machine.flac"));
+        public ObservableCollection<TrackVM> Tracks { get; } = new ObservableCollection<TrackVM>() { cityOfEvil, spitItOut, eyeless, lwymmd, theEmptinessMachine };
         public Track CurrentTrack => Tracks[currentTrackIndex].Source;
 		public PlayerVM PlayerVM { get; } = new PlayerVM();
 
@@ -29,6 +44,21 @@ namespace LyricsEditorPro.ViewModels
         public int LyricsFontSize { get => lyricsFontSize; set => lyricsFontSize = value; }
 
         public BaseCommand SelectFilesCommand => new BaseCommand(execute => SelectFiles());
+        public BaseCommand OnSwitchLyricsViewMode => new BaseCommand(execute => SwitchLyricsViewMode());
+
+        private void SwitchLyricsViewMode()
+        {
+            if (lyricsNavigation.CurrentVM == simpleLyricsViewModel)
+            {
+                syncedLyricsViewModel.SetLyrics((lyricsNavigation.CurrentVM as SimpleLyricsVM)?.LyricsText);
+                lyricsNavigation.CurrentVM = syncedLyricsViewModel;
+            }
+            else
+            {
+                simpleLyricsViewModel.SetLyrics((lyricsNavigation.CurrentVM as SyncedLyricsVM)?.LyricsText);
+                lyricsNavigation.CurrentVM = simpleLyricsViewModel;
+            }
+        }
 
         void SelectFiles()
         {
@@ -45,6 +75,10 @@ namespace LyricsEditorPro.ViewModels
         {
             foreach (string filepath in filepaths)
                 Tracks?.Add(new TrackVM(new Track(filepath)));
+        }
+        void OnCurrentVMChanged()
+        {
+            OnPropertyChanged(nameof(CurrentVM));
         }
     }
 }

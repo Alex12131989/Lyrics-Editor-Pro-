@@ -36,10 +36,6 @@
             </Button>
         </StackPanel>
 
-        <views:HomeUC Grid.Row="1">
-            <views:HomeUC.DataContext>
-                <vms:HomeVM />
-            </views:HomeUC.DataContext>
-        </views:HomeUC>
+        <views:HomeUC Grid.Row="1" x:Name="homeUC"/>
     </Grid>
 </Window>

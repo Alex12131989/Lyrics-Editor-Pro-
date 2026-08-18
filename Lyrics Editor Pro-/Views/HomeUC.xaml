@@ -5,7 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LyricsEditorPro.Views"
              xmlns:vms="clr-namespace:LyricsEditorPro.ViewModels"
-             mc:Ignorable="d">
+             xmlns:views="clr-namespace:LyricsEditorPro.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="450" 
+             d:DesignWidth="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,16 +20,28 @@
             <MenuItem Header="File"/>
         </Menu>
         <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type vms:SimpleLyricsVM}">
+                    <views:SimpleLyricsUC/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vms:SyncedLyricsVM}">
+                    <views:SyncedLyricsUC/>
+                </DataTemplate>
+            </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" MinWidth="800"/>
                 <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="1*" MinWidth="300"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <ScrollViewer VerticalScrollBarVisibility="Visible" Background="#323232" BorderBrush="DarkGray" Foreground="LightGray" Height="Auto">
-                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding LyricsText, UpdateSourceTrigger=PropertyChanged}" Padding="10" FontSize="{Binding LyricsFontSize}" TextWrapping="Wrap"/>
+                <ContentControl Content="{Binding CurrentVM}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch"/>
             </ScrollViewer>
-            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Background="Black"/>
-            <ListView ItemsSource="{Binding Tracks}" Grid.Column="2" Grid.Row="1">
+            <GridSplitter Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Stretch" Background="Black"/>
+            <ListView ItemsSource="{Binding Tracks}" Grid.Column="2" Grid.Row="0">
                 <ListView.ItemTemplate>
                     <DataTemplate x:Name="TripleLineDataTemplate">
                         <Grid>
@@ -44,24 +59,14 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                <Button Margin="10,5,10,5" Command="{Binding OnSwitchLyricsViewMode}">
+                    <TextBlock Text="Synced/Simple switch" Background="DarkGreen" Foreground="White" Padding="4"/>
+                </Button>
+            </StackPanel>
         </Grid>
         <local:PlayerUC DataContext="{Binding PlayerVM}" Grid.Column="0" Grid.Row="2" PlayerContent="{Binding DataContext.CurrentTrack,RelativeSource={RelativeSource AncestorType=local:HomeUC}}"/>
     </Grid>
-    <!--
-     <StackPanel VerticalAlignment = "Center" >
-        <TextBox Text="Welcome" HorizontalContentAlignment="Center" 
-FontSize="30" FontStyle="Italic" FontWeight="Bold" Margin="0,0,0,100"/>
-        <StackPanel Orientation = "Horizontal" HorizontalAlignment="Center">
-            <Button MinHeight="130" MinWidth="130" Command="{Binding SelectFilesCommand}" Margin="22">
-                <StackPanel >
-                    <Label>Select Files</Label>
-                    <!-_-<Image Width = "80" Source= "></Image>
-                </StackPanel >
-            </Button >
-        </StackPanel >
-        </StackPanel >
-
-        -->
 </UserControl>
 
     

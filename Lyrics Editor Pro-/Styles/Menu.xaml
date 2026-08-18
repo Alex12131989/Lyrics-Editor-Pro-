@@ -1,17 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="Menu.Static.Background" Color="Black"/>
-    <SolidColorBrush x:Key="Menu.Static.Border" Color="Black"/>
-    <SolidColorBrush x:Key="Menu.Static.Foreground" Color="LightGray"/>
-    <SolidColorBrush x:Key="Menu.Static.Separator" Color="#323232"/>
-    <SolidColorBrush x:Key="Menu.Disabled.Foreground" Color="#FF707070"/>
-
-    <SolidColorBrush x:Key="MenuItem.Selected.Background" Color="#222222"/>
-    <SolidColorBrush x:Key="MenuItem.Selected.Border" Color="Black"/>
-    <SolidColorBrush x:Key="MenuItem.Highlight.Background" Color="#222222"/>
-    <SolidColorBrush x:Key="MenuItem.Highlight.Border" Color="Black"/>
-    <SolidColorBrush x:Key="MenuItem.Highlight.Disabled.Background" Color="DarkGray"/>
-    <SolidColorBrush x:Key="MenuItem.Highlight.Disabled.Border" Color="LightGray"/>
     <!--Menu-->
     <Style TargetType="{x:Type Menu}">
         <Setter Property="Background" Value="{StaticResource Menu.Static.Background}"/>

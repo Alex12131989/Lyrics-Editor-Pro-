@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using LyricsEditorPro.ViewModels;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace LyricsEditorPro
@@ -12,6 +13,8 @@ namespace LyricsEditorPro
         {
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight-8;
             InitializeComponent();
+            HomeVM vm = new HomeVM();
+            homeUC.DataContext = vm;
         }
 
         private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -29,7 +32,7 @@ namespace LyricsEditorPro
             {
                 WindowState = WindowState.Normal;
                 TextBlock? textBlock = ((sender as Button)?.Content as TextBlock);
-                textBlock?.Text = "🗗\"";
+                textBlock?.Text = "🗗";
             }
             else
             {
